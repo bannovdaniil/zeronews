@@ -1,46 +1,36 @@
---
--- Структура таблицы `News`
---
-
-CREATE TABLE `News` (
-  `Id` bigint NOT NULL,
-  `Title` tinytext NOT NULL,
-  `Content` longtext NOT NULL
+-- --------------------------------------------------------
+-- РЎС‚СЂСѓРєС‚СѓСЂР° С‚Р°Р±Р»РёС†С‹ `News`
+CREATE TABLE `News`
+(
+    `Id`      bigint   NOT NULL,
+    `Title`   tinytext NOT NULL,
+    `Content` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
-
---
--- Структура таблицы `NewsCategories`
---
-
-CREATE TABLE `NewsCategories` (
-  `NewsId` bigint NOT NULL,
-  `CategoryId` bigint NOT NULL
+-- РЎС‚СЂСѓРєС‚СѓСЂР° С‚Р°Р±Р»РёС†С‹ `NewsCategories`
+CREATE TABLE `NewsCategories`
+(
+    `NewsId`     bigint NOT NULL,
+    `CategoryId` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Индексы сохранённых таблиц
---
+-- --------------------------------------------------------
+-- РРЅРґРµРєСЃС‹ СЃРѕС…СЂР°РЅС‘РЅРЅС‹С… С‚Р°Р±Р»РёС†
 
---
--- Индексы таблицы `News`
---
+-- --------------------------------------------------------
+-- РРЅРґРµРєСЃС‹ С‚Р°Р±Р»РёС†С‹ `News`
 ALTER TABLE `News`
-  ADD PRIMARY KEY (`Id`);
+    ADD PRIMARY KEY (`Id`);
 
---
--- Индексы таблицы `NewsCategories`
---
+-- --------------------------------------------------------
+-- РРЅРґРµРєСЃС‹ С‚Р°Р±Р»РёС†С‹ `NewsCategories`
 ALTER TABLE `NewsCategories`
-  ADD PRIMARY KEY (`NewsId`,`CategoryId`);
+    ADD PRIMARY KEY (`NewsId`, `CategoryId`);
 
+-- --------------------------------------------------------
+-- AUTO_INCREMENT РґР»СЏ СЃРѕС…СЂР°РЅС‘РЅРЅС‹С… С‚Р°Р±Р»РёС†
 --
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `News`
---
+-- AUTO_INCREMENT РґР»СЏ С‚Р°Р±Р»РёС†С‹ `News`
 ALTER TABLE `News`
-  MODIFY `Id` bigint NOT NULL AUTO_INCREMENT;
+    MODIFY `Id` bigint NOT NULL AUTO_INCREMENT;
