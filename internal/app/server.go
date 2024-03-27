@@ -1,4 +1,4 @@
-package zeronews
+package app
 
 import (
 	"context"
