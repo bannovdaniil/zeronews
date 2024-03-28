@@ -12,7 +12,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: "go run ./cmd/zeronews/main.go"
 
   db:
     image: postgres:alpine
