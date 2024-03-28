@@ -2,6 +2,7 @@ package app
 
 import (
 	config "github.com/bannovdaniil/zeronews/internal/app/config"
+	"github.com/bannovdaniil/zeronews/internal/app/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/sirupsen/logrus"
 )
@@ -12,14 +13,17 @@ func RunApp() {
 
 	applicationConfig := config.LoadConfig(log)
 
-	log.Println(applicationConfig)
+	log.Info(applicationConfig)
 
+	reformDB, err := database.ConnectToDB(applicationConfig.DbUrl, log)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 	server := fiber.New()
-	SetupRoutes(server)
+	SetupRoutes(server, reformDB, log)
 
-	addr := applicationConfig.Host + ":" + applicationConfig.Port
-
-	if err := server.Listen(addr); err != nil {
+	if err := server.Listen(":" + applicationConfig.Port); err != nil {
 		log.Fatalf("Error: %s", err.Error())
 		return
 	}
