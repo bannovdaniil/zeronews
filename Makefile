@@ -1,5 +1,8 @@
 .PHONY: build
 build:
+	go mod tidy
+	go mod download
+	go mod vendor
 	go build -v ./cmd/zeronews
 
 .PHONY: test

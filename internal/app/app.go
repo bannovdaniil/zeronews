@@ -7,17 +7,20 @@ import (
 )
 
 func RunApp() {
-	logrus.Info("Start server...")
+	log := logrus.New()
+	log.Info("Start server...")
 
-	applicationConfig := config.LoadConfig()
+	applicationConfig := config.LoadConfig(log)
 
-	logrus.Println(applicationConfig)
+	log.Println(applicationConfig)
 
 	server := fiber.New()
 	SetupRoutes(server)
 
-	if err := server.Listen(":" + applicationConfig.Port); err != nil {
-		logrus.Fatalf("Error: %s", err.Error())
+	addr := applicationConfig.Host + ":" + applicationConfig.Port
+
+	if err := server.Listen(addr); err != nil {
+		log.Fatalf("Error: %s", err.Error())
 		return
 	}
 

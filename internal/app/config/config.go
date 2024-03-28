@@ -15,7 +15,7 @@ type Config struct {
 	DbDatabase string `yaml:"DB_DATABASE"`
 }
 
-func LoadConfig() *Config {
+func LoadConfig(log *logrus.Logger) *Config {
 	var err error
 
 	cfg := Config{
@@ -28,11 +28,11 @@ func LoadConfig() *Config {
 	}
 	file, err := os.ReadFile("./application.yml")
 	if err != nil {
-		logrus.Fatalf("Error read config file: %s", err.Error())
+		log.Fatalf("Error read config file: %s", err.Error())
 	}
 
 	if err = yaml.Unmarshal(file, &cfg); err != nil {
-		logrus.Panicln("LoadConfig - %w", err)
+		log.Panicln("LoadConfig - %w", err)
 	}
 
 	url, exists := os.LookupEnv("DB_URL")
