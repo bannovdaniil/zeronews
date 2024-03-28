@@ -1,17 +1,22 @@
 package app
 
 import (
+	config "github.com/bannovdaniil/zeronews/internal/app/config"
 	"github.com/gofiber/fiber/v2"
 	"github.com/sirupsen/logrus"
 )
 
 func RunApp() {
 	logrus.Info("Start server...")
-	server := fiber.New()
 
+	applicationConfig := config.LoadConfig()
+
+	logrus.Println(applicationConfig)
+
+	server := fiber.New()
 	SetupRoutes(server)
 
-	if err := server.Listen(":3000"); err != nil {
+	if err := server.Listen(":" + applicationConfig.Port); err != nil {
 		logrus.Fatalf("Error: %s", err.Error())
 		return
 	}
