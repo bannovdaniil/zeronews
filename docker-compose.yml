@@ -12,14 +12,14 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: "go run ./cmd/zeronews"
+    entrypoint: "go run ./cmd/zeronews/main.go"
 
   db:
     image: postgres:alpine
     #    image: schema
     restart: always
     ports:
-      - "5432:5432"
+      - "6432:5432"
     volumes:
       - ./schema:/docker-entrypoint-initdb.d/
     environment:

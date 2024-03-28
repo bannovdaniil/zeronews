@@ -7,7 +7,6 @@ import (
 )
 
 type Config struct {
-	Host       string `yaml:"host"`
 	Port       string `yaml:"port"`
 	DbUrl      string `yaml:"DB_URL"`
 	DbUser     string `yaml:"DB_USER"`
@@ -19,7 +18,6 @@ func LoadConfig(log *logrus.Logger) *Config {
 	var err error
 
 	cfg := Config{
-		Host:       "",
 		Port:       "",
 		DbUrl:      "",
 		DbUser:     "",
