@@ -19,15 +19,16 @@ services:
     #    image: schema
     restart: always
     ports:
-      - "6432:5432"
+      - "5432:5432"
     volumes:
       - ./schema:/docker-entrypoint-initdb.d/
     environment:
+      POSTGRES_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/zero_news_db?sslmode=disable
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 4s
+      timeout: 2s
+      retries: 10
