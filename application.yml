@@ -1,5 +1,5 @@
 port: 8080
-DB_URL: postgres://postgres:postgres@localhost:5432/zero_news_db?sslmode=disable
+DB_URL: postgres://postgres:postgres@localhost:7432/zero_news_db?sslmode=disable
 DB_USER: postgres
 DB_PASSWORD: postgres
 DB_DATABASE: zero_news_db

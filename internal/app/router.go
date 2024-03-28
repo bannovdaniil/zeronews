@@ -12,14 +12,18 @@ type NewsHandlers struct {
 	logger *logrus.Logger
 }
 
-func (listHandler *NewsHandlers) listHandler(c *fiber.Ctx) error {
-	return handler.GetList(c, listHandler.db, listHandler.logger)
+func (newsHandler *NewsHandlers) listHandler(c *fiber.Ctx) error {
+	return handler.GetList(c, newsHandler.db, newsHandler.logger)
+}
+
+func (newsHandler *NewsHandlers) updateHandler(c *fiber.Ctx) error {
+	return handler.UpdateNews(c, newsHandler.db, newsHandler.logger)
 }
 
 func SetupRoutes(app *fiber.App, db *reform.DB, logger *logrus.Logger) {
-
 	getListHandler := &NewsHandlers{db, logger}
-
 	app.Get("/list", getListHandler.listHandler)
-	app.Post("/edit/:Id", handler.EditNews)
+
+	updateHandler := &NewsHandlers{db, logger}
+	app.Post("/edit/:Id", updateHandler.updateHandler)
 }
