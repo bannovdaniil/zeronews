@@ -20,7 +20,7 @@ func (v *newsTableType) Schema() string {
 	return v.s.SQLSchema
 }
 
-// Name returns a view or table name in SQL database ("News").
+// Name returns a view or table name in SQL database ("news").
 func (v *newsTableType) Name() string {
 	return v.s.SQLName
 }
@@ -49,11 +49,11 @@ func (v *newsTableType) PKColumnIndex() uint {
 	return uint(v.s.PKFieldIndex)
 }
 
-// NewsTable represents News view or table in SQL database.
+// NewsTable represents news view or table in SQL database.
 var NewsTable = &newsTableType{
 	s: parse.StructInfo{
 		Type:    "News",
-		SQLName: "News",
+		SQLName: "news",
 		Fields: []parse.FieldInfo{
 			{Name: "Id", Type: "int64", Column: "id"},
 			{Name: "Title", Type: "string", Column: "title"},

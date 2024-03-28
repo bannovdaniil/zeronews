@@ -2,7 +2,7 @@ package model
 
 //go:generate reform
 
-// reform:News
+// reform:news
 type News struct {
 	Id         int64   `json:"Id" reform:"id,pk"`
 	Title      string  `json:"Title" reform:"title"`
