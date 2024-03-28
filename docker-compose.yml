@@ -4,13 +4,14 @@ services:
   web:
     build: .
     ports:
-      - 3000:3000
+      - 8080:8080
     volumes:
       - .:/usr/src/app
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     entrypoint: "go run ./cmd/zeronews"
 
   db:
@@ -25,3 +26,8 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
